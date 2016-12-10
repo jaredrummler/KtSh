@@ -48,7 +48,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class Shell {
 
-  private static final String[] AVAILABLE_TEST_COMMANDS = new String[]{"echo -BOC-", "id"};
+  static final String[] AVAILABLE_TEST_COMMANDS = new String[]{"echo -BOC-", "id"};
 
   /**
    * <p>Runs commands using the supplied shell, and returns the result.</p>
@@ -185,6 +185,41 @@ public class Shell {
   }
 
   /**
+   * <p>This code is adapted from java.lang.ProcessBuilder.start().</p>
+   *
+   * <p>The problem is that Android doesn't allow us to modify the map returned by ProcessBuilder.environment(), even
+   * though the JavaDoc indicates that it should. This is because it simply returns the SystemEnvironment object that
+   * System.getenv() gives us. The relevant portion in the source code is marked as "// android changed", so
+   * presumably it's not the case in the original version of the Apache Harmony project.</p>
+   *
+   * @param command
+   *     The name of the program to execute. E.g. "su" or "sh".
+   * @param environment
+   *     Map of all environment variables
+   * @return new {@link Process} instance.
+   * @throws IOException
+   *     if the requested program could not be executed.
+   */
+  @WorkerThread
+  public static Process runWithEnv(@NonNull String command, Map<String, String> environment) throws IOException {
+    String[] env;
+    if (environment != null && environment.size() != 0) {
+      Map<String, String> newEnvironment = new HashMap<>();
+      newEnvironment.putAll(System.getenv());
+      newEnvironment.putAll(environment);
+      int i = 0;
+      env = new String[newEnvironment.size()];
+      for (Map.Entry<String, String> entry : newEnvironment.entrySet()) {
+        env[i] = entry.getKey() + "=" + entry.getValue();
+        i++;
+      }
+    } else {
+      env = null;
+    }
+    return Runtime.getRuntime().exec(command, env);
+  }
+
+  /**
    * See if the shell is alive, and if so, check the UID
    *
    * @param stdout
@@ -193,7 +228,7 @@ public class Shell {
    *     true if we are expecting this shell to be running as root
    * @return true on success, false on error
    */
-  private static boolean parseAvailableResult(List<String> stdout, boolean checkForRoot) {
+  static boolean parseAvailableResult(List<String> stdout, boolean checkForRoot) {
     if (stdout == null) {
       return false;
     }
@@ -248,7 +283,7 @@ public class Shell {
      */
     public static void closeConsole() {
       if (console != null) {
-        synchronized (console) {
+        synchronized (SH.class) {
           if (console != null) {
             console.close();
             console = null;
@@ -922,36 +957,37 @@ public class Shell {
    * background thread will (by default) result in all the callbacks being executed in one of the gobbler threads.
    * You will have to make sure the code you execute in these callbacks is thread-safe.</p>
    */
+  @SuppressWarnings("unused")
   public static class Interactive {
 
     private final Handler handler;
     private final boolean autoHandler;
-    private final String shell;
-    private final boolean wantSTDERR;
+    final String shell;
+    final boolean wantSTDERR;
     private final List<Command> commands;
     private final Map<String, String> environment;
-    private final StreamGobbler.OnLineListener onStdoutLineListener;
-    private final StreamGobbler.OnLineListener onStderrLineListener;
+    final StreamGobbler.OnLineListener onStdoutLineListener;
+    final StreamGobbler.OnLineListener onStderrLineListener;
     private final Object idleSync = new Object();
     private final Object callbackSync = new Object();
 
-    private volatile String lastMarkerStdout;
-    private volatile String lastMarkerStderr;
-    private volatile Command command;
+    volatile String lastMarkerStdout;
+    volatile String lastMarkerStderr;
+    volatile Command command;
     private volatile List<String> buffer;
     private volatile boolean running;
     private volatile boolean idle = true; // read/write only synchronized
     private volatile boolean closed = true;
     private volatile int callbacks;
     private volatile int watchdogCount;
-    private volatile int lastExitCode;
+    volatile int lastExitCode;
 
     private Process process;
     private DataOutputStream stdin;
     private StreamGobbler stdout;
     private StreamGobbler stderr;
     private ScheduledThreadPoolExecutor watchdog;
-    private int watchdogTimeout;
+    int watchdogTimeout;
 
     /**
      * The only way to create an instance: Shell.Builder::open()
@@ -959,7 +995,7 @@ public class Shell {
      * @param builder
      *     Builder class to take values from
      */
-    private Interactive(final Builder builder, final OnCommandResultListener onCommandResultListener) {
+    Interactive(final Builder builder, final OnCommandResultListener onCommandResultListener) {
       autoHandler = builder.autoHandler;
       shell = builder.shell;
       wantSTDERR = builder.wantStderr;
@@ -981,19 +1017,18 @@ public class Shell {
         // Allow up to 60 seconds for SuperSU/Superuser dialog, then enable the user-specified timeout for all
         // subsequent operations
         watchdogTimeout = 60;
-        commands.add(0,
-            new Command(Shell.AVAILABLE_TEST_COMMANDS, 0, new OnCommandResultListener() {
+        commands.add(0, new Command(Shell.AVAILABLE_TEST_COMMANDS, 0, new OnCommandResultListener() {
 
-              @Override public void onCommandResult(int commandCode, int exitCode, List<String> output) {
-                if ((exitCode == ShellExitCode.SUCCESS) &&
-                    !Shell.parseAvailableResult(output, Shell.SU.isSU(shell))) {
-                  // shell is up, but it's brain-damaged
-                  exitCode = ShellExitCode.SHELL_EXEC_FAILED;
-                }
-                watchdogTimeout = builder.watchdogTimeout;
-                onCommandResultListener.onCommandResult(0, exitCode, output);
-              }
-            }, null));
+          @Override public void onCommandResult(int commandCode, int exitCode, List<String> output) {
+            if ((exitCode == ShellExitCode.SUCCESS) &&
+                !Shell.parseAvailableResult(output, Shell.SU.isSU(shell))) {
+              // shell is up, but it's brain-damaged
+              exitCode = ShellExitCode.SHELL_EXEC_FAILED;
+            }
+            watchdogTimeout = builder.watchdogTimeout;
+            onCommandResultListener.onCommandResult(0, exitCode, output);
+          }
+        }, null));
       }
 
       if (!open() && (onCommandResultListener != null)) {
@@ -1142,7 +1177,7 @@ public class Shell {
     /**
      * Called from a ScheduledThreadPoolExecutor timer thread every second when there is an outstanding command
      */
-    private synchronized void handleWatchdog() {
+    synchronized void handleWatchdog() {
       final int exitCode;
 
       if (watchdog == null)
@@ -1261,7 +1296,7 @@ public class Shell {
     /**
      * Processes a stdout/stderr line containing an end/exitCode marker
      */
-    private synchronized void processMarker() {
+    synchronized void processMarker() {
       if (command.marker.equals(lastMarkerStdout)
           && (command.marker.equals(lastMarkerStderr))) {
         postCallback(command, lastExitCode, buffer);
@@ -1281,7 +1316,7 @@ public class Shell {
      * @param listener
      *     Callback to call or null
      */
-    private synchronized void processLine(String line, StreamGobbler.OnLineListener listener) {
+    synchronized void processLine(String line, StreamGobbler.OnLineListener listener) {
       if (listener != null) {
         if (handler != null) {
           final String fLine = line;
@@ -1310,7 +1345,7 @@ public class Shell {
      * @param line
      *     Line to add
      */
-    private synchronized void addBuffer(String line) {
+    synchronized void addBuffer(String line) {
       if (buffer != null) {
         buffer.add(line);
       }
@@ -1359,7 +1394,7 @@ public class Shell {
     /**
      * Decrease callback counter, signals callback complete state when dropped to 0
      */
-    private void endCallback() {
+    void endCallback() {
       synchronized (callbackSync) {
         callbacks--;
         if (callbacks == 0) {
@@ -1377,21 +1412,7 @@ public class Shell {
     private synchronized boolean open() {
       try {
         // setup our process, retrieve stdin stream, and stdout/stderr gobblers
-        if (environment.size() == 0) {
-          process = Runtime.getRuntime().exec(shell);
-        } else {
-          Map<String, String> newEnvironment = new HashMap<>();
-          newEnvironment.putAll(System.getenv());
-          newEnvironment.putAll(environment);
-          int i = 0;
-          String[] env = new String[newEnvironment.size()];
-          for (Map.Entry<String, String> entry : newEnvironment.entrySet()) {
-            env[i] = entry.getKey() + "=" + entry.getValue();
-            i++;
-          }
-          process = Runtime.getRuntime().exec(shell, env);
-        }
-
+        process = runWithEnv(shell, environment);
         stdin = new DataOutputStream(process.getOutputStream());
         stdout = new StreamGobbler(process.getInputStream(), new StreamGobbler.OnLineListener() {
 
@@ -1660,12 +1681,12 @@ public class Shell {
 
     private final OnCloseListener onCloseListener;
     private final Shell.Interactive shell;
-    private final HandlerThread callbackThread;
+    final HandlerThread callbackThread;
     private final boolean wantStderr;
-    private List<String> stdout;
-    private List<String> stderr;
-    private int exitCode;
-    private boolean isCommandRunning;
+    List<String> stdout;
+    List<String> stderr;
+    int exitCode;
+    boolean isCommandRunning;
     private boolean closed;
 
     private final Shell.OnCommandResultListener commandResultListener = new Shell.OnCommandResultListener() {
@@ -1680,7 +1701,7 @@ public class Shell {
       }
     };
 
-    private Console(Builder builder) throws ShellNotFoundException {
+    Console(Builder builder) throws ShellNotFoundException {
       try {
         onCloseListener = builder.onCloseListener;
         wantStderr = builder.wantStderr;
@@ -1800,11 +1821,11 @@ public class Shell {
      */
     public static class Builder {
 
-      private Console.OnCloseListener onCloseListener;
-      private Map<String, String> environment = new HashMap<>();
-      private String shell = "sh";
-      private boolean wantStderr = true;
-      private int watchdogTimeout;
+      Console.OnCloseListener onCloseListener;
+      Map<String, String> environment = new HashMap<>();
+      String shell = "sh";
+      boolean wantStderr = true;
+      int watchdogTimeout;
 
       /**
        * Set shell binary to use. Usually "sh" or "su", do not use a full path unless you have a good
