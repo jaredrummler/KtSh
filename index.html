@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Android-shell : Execute shell commands on Android.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Android-shell</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/jrummyapps/android-shell">View on GitHub</a>
+
+          <h1 id="project_title">Android-shell</h1>
+          <h2 id="project_tagline">Execute shell commands on Android.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/jrummyapps/android-shell/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/jrummyapps/android-shell/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="android-shell" class="anchor" href="#android-shell" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Android Shell</h1>
+
+<p><img src="https://github.com/jrummyapps/android-shell/blob/master/demo/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="10" vspace="10"></p>
+
+<p>Execute shell commands on Android.</p>
+
+<p><a href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html"><img src="https://img.shields.io/badge/API-14%2B-blue.svg?style=flat" alt="API"></a>
+<a href="LICENSE"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License"></a>
+<a href="https://maven-badges.herokuapp.com/maven-central/com.jrummyapps/android-shell"><img src="https://maven-badges.herokuapp.com/maven-central/com.jrummyapps/android-shell/badge.svg" alt="Maven Central"></a>
+<a href="http://www.methodscount.com/?lib=com.jrummyapps%3Aandroid-shell%3A1.0.0"><img src="https://img.shields.io/badge/methods-231-e91e63.svg"></a>
+<a href="http://www.methodscount.com/?lib=com.jrummyapps%3Aandroid-shell%3A1.0.0"><img src="https://img.shields.io/badge/Size-32%20KB-e91e63.svg"></a>
+<a href="https://twitter.com/jrummyapps"><img src="https://img.shields.io/twitter/follow/jrummyapps.svg?style=social"></a></p>
+
+<p>Download <a href="https://repo1.maven.org/maven2/com/jrummyapps/android-shell/1.0.0/android-processes-1.0.0.aar">the latest AAR</a> or grab via Gradle:</p>
+
+<div class="highlight highlight-source-groovy"><pre>compile <span class="pl-s"><span class="pl-pds">'</span>com.jrummyapps:android-shell:1.0.0<span class="pl-pds">'</span></span></pre></div>
+
+<p><br></p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Common utility functions include:</p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">CommandResult</span> <span class="pl-smi">Shell</span><span class="pl-k">.</span>run(<span class="pl-smi">String</span> shell, <span class="pl-smi">String</span><span class="pl-k">.</span><span class="pl-c1">..</span> commands)
+<span class="pl-smi">CommandResult</span> <span class="pl-smi">Shell</span><span class="pl-c1"><span class="pl-k">.</span>SH</span><span class="pl-k">.</span>run(<span class="pl-smi">String</span><span class="pl-k">.</span><span class="pl-c1">..</span> commands)
+<span class="pl-smi">CommandResult</span> <span class="pl-smi">Shell</span><span class="pl-c1"><span class="pl-k">.</span>SU</span><span class="pl-k">.</span>run(<span class="pl-smi">String</span><span class="pl-k">.</span><span class="pl-c1">..</span> commands)</pre></div>
+
+<p>The result will contains the exit code, standard output (stdout), and standard error (stderr).</p>
+
+<p>Example of running a command as root:</p>
+
+<div class="highlight highlight-source-java"><pre><span class="pl-smi">CommandResult</span> result <span class="pl-k">=</span> <span class="pl-smi">Shell</span><span class="pl-c1"><span class="pl-k">.</span>SU</span><span class="pl-k">.</span>run(<span class="pl-s"><span class="pl-pds">"</span>id<span class="pl-pds">"</span></span>);
+<span class="pl-k">if</span> (result<span class="pl-k">.</span>isSuccessful()) {
+  <span class="pl-smi">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(result<span class="pl-k">.</span>getStdout());
+  <span class="pl-c">// Example output on a rooted device:</span>
+  <span class="pl-c">// uid=0(root) gid=0(root) groups=0(root) context=u:r:init:s0</span>
+}</pre></div>
+
+<p>You can open multiple shell instances using <code>Shell.Builder</code> or <code>Shell.Console.Builder</code>. Calling <code>Shell.SU.run(String... commands)</code> will keep a su session open in the background so additional calls will not create new superuser requests.</p>
+
+<p>Fore more information please see <a href="http://su.chainfire.eu/">http://su.chainfire.eu/</a></p>
+
+<h2>
+<a id="acknowledgements" class="anchor" href="#acknowledgements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Acknowledgements</h2>
+
+<p><a href="https://github.com/Chainfire/libsuperuser">libsuperuser</a> by <a href="https://twitter.com/ChainfireXDA">Chainfire</a></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>Copyright (C) 2016 JRummy Apps Inc.
+Copyright (C) 2012-2015 Jorrit "Chainfire" Jongma
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Android-shell maintained by <a href="https://github.com/jrummyapps">jrummyapps</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
