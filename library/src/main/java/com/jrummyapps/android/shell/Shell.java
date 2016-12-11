@@ -1735,7 +1735,7 @@ public class Shell {
           throw new ShellNotFoundException("Access was denied or this is not a shell");
         }
       } catch (Exception e) {
-        throw new ShellNotFoundException(e);
+        throw new ShellNotFoundException("Error opening shell '" + builder.shell + "'", e);
       }
     }
 

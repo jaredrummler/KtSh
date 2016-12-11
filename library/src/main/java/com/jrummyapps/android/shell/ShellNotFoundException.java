@@ -36,11 +36,13 @@ public class ShellNotFoundException extends IOException {
   /**
    * Constructs a new {@code Exception} with the current stack trace and the specified cause.
    *
-   * @param throwable
+   * @param message
+   *     the detail message for this exception.
+   * @param cause
    *     the cause of this exception.
    */
-  public ShellNotFoundException(Throwable throwable) {
-    super(throwable);
+  public ShellNotFoundException(String message, Throwable cause) {
+    super(message, cause);
   }
 
 }

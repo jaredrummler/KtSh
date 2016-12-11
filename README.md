@@ -4,7 +4,7 @@
 
 Execute shell commands on Android.
 
-<a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html"><img src="https://img.shields.io/badge/API-14%2B-blue.svg?style=flat" alt="API" /></a>
+<a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a>
 <a target="_blank" href="LICENSE"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a>
 <a target="_blank" href="https://maven-badges.herokuapp.com/maven-central/com.jrummyapps/android-shell"><img src="https://maven-badges.herokuapp.com/maven-central/com.jrummyapps/android-shell/badge.svg" alt="Maven Central" /></a>
 <a target="_blank" href="http://www.methodscount.com/?lib=com.jrummyapps%3Aandroid-shell%3A1.0.0"><img src="https://img.shields.io/badge/methods-231-e91e63.svg" /></a>
