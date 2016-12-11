@@ -1751,6 +1751,8 @@ public class Shell {
       isCommandRunning = true;
       if (wantStderr) {
         stderr = Collections.synchronizedList(new ArrayList<String>());
+      } else {
+        stderr = Collections.emptyList();
       }
       shell.addCommand(commands, 0, commandResultListener);
       waitForCommandFinished();
