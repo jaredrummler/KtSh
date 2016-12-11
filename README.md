@@ -1,6 +1,6 @@
 # Android Shell
 
-<img src="demo/src/main/res/mipmap-xxxhdpi/ic_launcher.png" align="left" hspace="10" vspace="10"></a>
+<img src="https://github.com/jrummyapps/android-shell/blob/master/demo/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="10" vspace="10"></a>
 
 Execute shell commands on Android.
 
