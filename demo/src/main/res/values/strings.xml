@@ -18,4 +18,5 @@
   <string name="app_name">Android Shell</string>
   <string name="run_as_root">Run as root</string>
   <string name="run">RUN</string>
+  <string name="github">GitHub</string>
 </resources>

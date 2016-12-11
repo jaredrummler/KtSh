@@ -17,14 +17,20 @@
 package com.jrummyapps.android.shell.demo;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.Html;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -77,6 +83,26 @@ public class MainActivity extends AppCompatActivity {
 
   }
 
+  @Override public boolean onCreateOptionsMenu(Menu menu) {
+    menu.add(0, Menu.FIRST, 0, R.string.github)
+        .setIcon(R.drawable.ic_github)
+        .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+    return super.onCreateOptionsMenu(menu);
+  }
+
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case Menu.FIRST:
+        try {
+          startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/jrummyapps/android-shell")));
+        } catch (ActivityNotFoundException ignored) {
+        }
+        return true;
+      default:
+        return super.onOptionsItemSelected(item);
+    }
+  }
+
   @Override protected void onDestroy() {
     super.onDestroy();
     if (isFinishing()) {
@@ -110,29 +136,33 @@ public class MainActivity extends AppCompatActivity {
     @Override protected void onPostExecute(CommandResult result) {
       if (!isFinishing()) {
         dialog.dismiss();
-        StringBuilder html = new StringBuilder();
-        // exit status
-        html.append("<p><strong>Edit Code:</strong> ");
-        if (result.isSuccessful()) {
-          html.append("<font color='green'>").append(result.exitCode).append("</font>");
-        } else {
-          html.append("<font color='red'>").append(result.exitCode).append("</font>");
-        }
-        html.append("</p>");
-        // stdout
-        if (result.stdout.size() > 0) {
-          html.append("<p><strong>STDOUT:</strong></p><p>")
-              .append(result.getStdout().replaceAll("\n", "<br>"))
-              .append("</p>");
-        }
-        // stderr
-        if (result.stderr.size() > 0) {
-          html.append("<p><strong>STDERR:</strong></p><p><font color='red'>")
-              .append(result.getStderr().replaceAll("\n", "<br>"))
-              .append("</font></p>");
-        }
-        outputTextView.setText(Html.fromHtml(html.toString()));
+        outputTextView.setText(resultToHtml(result));
       }
+    }
+
+    private Spanned resultToHtml(CommandResult result) {
+      StringBuilder html = new StringBuilder();
+      // exit status
+      html.append("<p><strong>Edit Code:</strong> ");
+      if (result.isSuccessful()) {
+        html.append("<font color='green'>").append(result.exitCode).append("</font>");
+      } else {
+        html.append("<font color='red'>").append(result.exitCode).append("</font>");
+      }
+      html.append("</p>");
+      // stdout
+      if (result.stdout.size() > 0) {
+        html.append("<p><strong>STDOUT:</strong></p><p>")
+            .append(result.getStdout().replaceAll("\n", "<br>"))
+            .append("</p>");
+      }
+      // stderr
+      if (result.stderr.size() > 0) {
+        html.append("<p><strong>STDERR:</strong></p><p><font color='red'>")
+            .append(result.getStderr().replaceAll("\n", "<br>"))
+            .append("</font></p>");
+      }
+      return Html.fromHtml(html.toString());
     }
 
   }
