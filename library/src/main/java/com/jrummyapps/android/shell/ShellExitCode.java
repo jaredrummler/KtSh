@@ -16,6 +16,7 @@
 
 package com.jrummyapps.android.shell;
 
+@SuppressWarnings("unused")
 public interface ShellExitCode {
 
   int SUCCESS = 0;

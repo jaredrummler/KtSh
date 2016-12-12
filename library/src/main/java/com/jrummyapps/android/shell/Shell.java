@@ -46,6 +46,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Class providing functionality to execute commands in a (root) shell
  */
+@SuppressWarnings("unused")
 public class Shell {
 
   static final String[] AVAILABLE_TEST_COMMANDS = new String[]{"echo -BOC-", "id"};
@@ -523,15 +524,19 @@ public class Shell {
           // Detect enforcing through sysfs, not always present
           File f = new File("/sys/fs/selinux/enforce");
           if (f.exists()) {
+            InputStream is = null;
             try {
-              InputStream is = new FileInputStream("/sys/fs/selinux/enforce");
-              try {
-                enforcing = (is.read() == '1');
-              } finally {
-                is.close();
-              }
+              is = new FileInputStream("/sys/fs/selinux/enforce");
+              enforcing = (is.read() == '1');
             } catch (Exception e) {
               // we might not be allowed to read, thanks SELinux
+            } finally {
+              if (is != null) {
+                try {
+                  is.close();
+                } catch (IOException ignored) {
+                }
+              }
             }
           }
 

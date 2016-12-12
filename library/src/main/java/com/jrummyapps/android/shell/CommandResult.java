@@ -25,6 +25,18 @@ import java.util.List;
  */
 public class CommandResult implements ShellExitCode {
 
+  private static String toString(List<String> lines) {
+    StringBuilder sb = new StringBuilder();
+    if (lines != null) {
+      String emptyOrNewLine = "";
+      for (String line : lines) {
+        sb.append(emptyOrNewLine).append(line);
+        emptyOrNewLine = "\n";
+      }
+    }
+    return sb.toString();
+  }
+
   @NonNull public final List<String> stdout;
   @NonNull public final List<String> stderr;
   public final int exitCode;
@@ -50,7 +62,7 @@ public class CommandResult implements ShellExitCode {
    * @return The standard output as a string.
    */
   public String getStdout() {
-    return linesToString(stdout);
+    return toString(stdout);
   }
 
   /**
@@ -59,19 +71,7 @@ public class CommandResult implements ShellExitCode {
    * @return The standard error as a string.
    */
   public String getStderr() {
-    return linesToString(stderr);
-  }
-
-  private String linesToString(List<String> lines) {
-    StringBuilder sb = new StringBuilder();
-    if (lines != null) {
-      String emptyOrNewLine = "";
-      for (String line : lines) {
-        sb.append(emptyOrNewLine).append(line);
-        emptyOrNewLine = "\n";
-      }
-    }
-    return sb.toString();
+    return toString(stderr);
   }
 
   @Override public String toString() {
