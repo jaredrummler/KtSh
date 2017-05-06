@@ -14,29 +14,27 @@
  *  limitations under the License.
  */
 
-buildscript {
-  repositories {
-    jcenter()
-  }
-  dependencies {
-    classpath 'com.android.tools.build:gradle:2.3.1'
-    classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.1.1"
-  }
-}
+package com.jaredrummler.android.shell;
 
-allprojects {
-  repositories {
-    jcenter()
-    maven {
-      url "${artifactory_url}"
-      credentials {
-        username = "${artifactory_username}"
-        password = "${artifactory_password}"
-      }
-    }
-  }
-}
+@SuppressWarnings("unused")
+public interface ShellExitCode {
 
-task clean(type: Delete) {
-  delete rootProject.buildDir
+  int SUCCESS = 0;
+
+  int WATCHDOG_EXIT = -1;
+
+  int SHELL_DIED = -2;
+
+  int SHELL_EXEC_FAILED = -3;
+
+  int SHELL_WRONG_UID = -4;
+
+  int SHELL_NOT_FOUND = -5;
+
+  int TERMINATED = 130;
+
+  int COMMAND_NOT_EXECUTABLE = 126;
+
+  int COMMAND_NOT_FOUND = 127;
+
 }

@@ -1,20 +1,20 @@
 # Android Shell
 
-<img src="https://github.com/jrummyapps/android-shell/blob/master/demo/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="10" vspace="10"></a>
+<img src="https://github.com/jaredrummler/android-shell/blob/master/demo/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="10" vspace="10"></a>
 
 Execute shell commands on Android.
 
 <a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a>
 <a target="_blank" href="LICENSE"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a>
-<a target="_blank" href="https://maven-badges.herokuapp.com/maven-central/com.jrummyapps/android-shell"><img src="https://maven-badges.herokuapp.com/maven-central/com.jrummyapps/android-shell/badge.svg" alt="Maven Central" /></a>
-<a target="_blank" href="http://www.methodscount.com/?lib=com.jrummyapps%3Aandroid-shell%3A1.0.1"><img src="https://img.shields.io/badge/methods-231-e91e63.svg" /></a>
-<a target="_blank" href="http://www.methodscount.com/?lib=com.jrummyapps%3Aandroid-shell%3A1.0.1"><img src="https://img.shields.io/badge/Size-32 KB-e91e63.svg"/></a>
-<a target="_blank" href="https://twitter.com/jrummyapps"><img src="https://img.shields.io/twitter/follow/jrummyapps.svg?style=social" /></a>
+<a target="_blank" href="https://maven-badges.herokuapp.com/maven-central/com.jaredrummler/android-shell"><img src="https://maven-badges.herokuapp.com/maven-central/com.jaredrummler/android-shell/badge.svg" alt="Maven Central" /></a>
+<a target="_blank" href="http://www.methodscount.com/?lib=com.jaredrummler%3Aandroid-shell%3A1.0.0"><img src="https://img.shields.io/badge/methods-231-e91e63.svg" /></a>
+<a target="_blank" href="http://www.methodscount.com/?lib=com.jaredrummler%3Aandroid-shell%3A1.0.0"><img src="https://img.shields.io/badge/Size-32 KB-e91e63.svg"/></a>
+<a target="_blank" href="https://twitter.com/jaredrummler"><img src="https://img.shields.io/twitter/follow/jaredrummler.svg?style=social" /></a>
 
-Download [the latest AAR](https://repo1.maven.org/maven2/com/jrummyapps/android-shell/1.0.1/android-processes-1.0.1.aar) or grab via Gradle:
+Download [the latest AAR](https://repo1.maven.org/maven2/com/jaredrummler/android-shell/1.0.0/android-processes-1.0.0.aar) or grab via Gradle:
 
 ```groovy
-compile 'com.jrummyapps:android-shell:1.0.1'
+compile 'com.jaredrummler:android-shell:1.0.0'
 ```
 <br>
 
@@ -55,7 +55,7 @@ Acknowledgements
 License
 -------
 
-    Copyright (C) 2016 JRummy Apps Inc.
+    Copyright (C) 2016 Jared Rummler
     Copyright (C) 2012-2015 Jorrit "Chainfire" Jongma
 
     Licensed under the Apache License, Version 2.0 (the "License");
