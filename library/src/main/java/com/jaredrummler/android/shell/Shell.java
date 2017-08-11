@@ -114,8 +114,8 @@ public class Shell {
         stdin.flush();
       } catch (IOException e) {
         //noinspection StatementWithEmptyBody
-        if (e.getMessage().contains("EPIPE")) {
-          // method most horrid to catch broken pipe, in which case we do nothing. the command is not a shell, the
+        if (e.getMessage().contains("EPIPE") || e.getMessage().contains("Stream closed")) {
+          // Method most horrid to catch broken pipe, in which case we do nothing. The command is not a shell, the
           // shell closed stdin, the script already contained the exit command, etc. these cases we want the output
           // instead of returning null
         } else {
@@ -1531,7 +1531,7 @@ public class Shell {
           stdin.flush();
         } catch (IOException e) {
           //noinspection StatementWithEmptyBody
-          if (e.getMessage().contains("EPIPE")) {
+          if (e.getMessage().contains("EPIPE") || e.getMessage().contains("Stream closed")) {
             // we're not running a shell, the shell closed stdin,
             // the script already contained the exit command, etc.
           } else {
