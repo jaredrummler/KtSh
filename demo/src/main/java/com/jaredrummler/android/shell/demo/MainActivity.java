@@ -21,12 +21,9 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.NonNull;
 import android.text.Editable;
-import android.text.Html;
-import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -37,49 +34,49 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.jaredrummler.android.shell.CommandResult;
-import com.jaredrummler.android.shell.Shell;
+import com.jaredrummler.simplemvp.MvpAppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends MvpAppCompatActivity<MainPresenter> implements MainView {
 
-  private static final String TAG = "MainActivity";
+  private EditText commandEditText;
+  private CheckBox rootCheckBox;
+  private Button runButton;
+  private TextView outputTextView;
+  private ProgressDialog dialog;
 
-  EditText commandEditText;
-  CheckBox rootCheckBox;
-  Button runButton;
-  TextView outputTextView;
+  private final TextWatcher runButtonEnabledWatcher = new TextWatcher() {
+
+    @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override public void afterTextChanged(Editable s) {
+      runButton.setEnabled(!TextUtils.isEmpty(s));
+    }
+  };
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    commandEditText = (EditText) findViewById(R.id.commandsEditText);
-    rootCheckBox = (CheckBox) findViewById(R.id.rootCheckBox);
-    runButton = (Button) findViewById(R.id.runButton);
-    outputTextView = (TextView) findViewById(R.id.outputTextView);
+    commandEditText = findViewById(R.id.commandsEditText);
+    rootCheckBox = findViewById(R.id.rootCheckBox);
+    runButton = findViewById(R.id.runButton);
+    outputTextView = findViewById(R.id.outputTextView);
 
-    commandEditText.addTextChangedListener(new TextWatcher() {
-      @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-      }
+    commandEditText.addTextChangedListener(runButtonEnabledWatcher);
+  }
 
-      @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
-      }
-
-      @Override public void afterTextChanged(Editable s) {
-        runButton.setEnabled(!TextUtils.isEmpty(s));
-      }
-    });
-
-    runButton.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(commandEditText.getWindowToken(), 0);
-        String command = commandEditText.getText().toString();
-        boolean asRoot = rootCheckBox.isChecked();
-        new RunCommandTask(asRoot).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, command);
-      }
-    });
-
+  public void onRun(View v) {
+    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+    imm.hideSoftInputFromWindow(commandEditText.getWindowToken(), 0);
+    String command = commandEditText.getText().toString();
+    boolean asRoot = rootCheckBox.isChecked();
+    getPresenter().execute(asRoot, command);
   }
 
   @Override public boolean onCreateOptionsMenu(Menu menu) {
@@ -102,68 +99,21 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
-  @Override protected void onDestroy() {
-    super.onDestroy();
-    if (isFinishing()) {
-      Shell.SU.closeConsole();
-    }
+  @Override public void showProgress() {
+    dialog = ProgressDialog.show(MainActivity.this, "Running Command", "Please Wait...");
+    dialog.setCancelable(false);
   }
 
-  // Ignore the bad AsyncTask usage.
-  final class RunCommandTask extends AsyncTask<String, Void, CommandResult> {
+  @Override public void hideProgress() {
+    dialog.dismiss();
+  }
 
-    private final boolean asRoot;
-    private ProgressDialog dialog;
+  @Override public void showResult(CharSequence result) {
+    outputTextView.setText(result);
+  }
 
-    RunCommandTask(boolean asRoot) {
-      this.asRoot = asRoot;
-    }
-
-    @Override protected void onPreExecute() {
-      dialog = ProgressDialog.show(MainActivity.this, "Running Command", "Please Wait...");
-      dialog.setCancelable(false);
-    }
-
-    @Override protected CommandResult doInBackground(String... commands) {
-      if (asRoot) {
-        return Shell.SU.run(commands);
-      } else {
-        return Shell.SH.run(commands);
-      }
-    }
-
-    @Override protected void onPostExecute(CommandResult result) {
-      if (!isFinishing()) {
-        dialog.dismiss();
-        outputTextView.setText(resultToHtml(result));
-      }
-    }
-
-    private Spanned resultToHtml(CommandResult result) {
-      StringBuilder html = new StringBuilder();
-      // exit status
-      html.append("<p><strong>Edit Code:</strong> ");
-      if (result.isSuccessful()) {
-        html.append("<font color='green'>").append(result.exitCode).append("</font>");
-      } else {
-        html.append("<font color='red'>").append(result.exitCode).append("</font>");
-      }
-      html.append("</p>");
-      // stdout
-      if (result.stdout.size() > 0) {
-        html.append("<p><strong>STDOUT:</strong></p><p>")
-            .append(result.getStdout().replaceAll("\n", "<br>"))
-            .append("</p>");
-      }
-      // stderr
-      if (result.stderr.size() > 0) {
-        html.append("<p><strong>STDERR:</strong></p><p><font color='red'>")
-            .append(result.getStderr().replaceAll("\n", "<br>"))
-            .append("</font></p>");
-      }
-      return Html.fromHtml(html.toString());
-    }
-
+  @NonNull @Override public MainPresenter createPresenter() {
+    return new MainPresenter();
   }
 
 }

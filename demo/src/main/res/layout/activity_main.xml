@@ -25,8 +25,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.jrummyapps.android.shell.demo.com.jaredrummler.android.shell.demo.MainActivity">
+    android:paddingTop="@dimen/activity_vertical_margin">
 
   <EditText
       android:id="@+id/commandsEditText"
@@ -52,6 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:enabled="false"
+        android:onClick="onRun"
         android:text="@string/run"/>
 
   </LinearLayout>
