@@ -90,7 +90,7 @@ public class MainActivity extends MvpAppCompatActivity<MainPresenter> implements
     switch (item.getItemId()) {
       case Menu.FIRST:
         try {
-          startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/jrummyapps/android-shell")));
+          startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/jaredrummler/AndroidShell")));
         } catch (ActivityNotFoundException ignored) {
         }
         return true;
