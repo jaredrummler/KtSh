@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package com.jaredrummler.android.shell.demo;
+package com.jaredrummler.android.shell.demo
 
-import com.jaredrummler.simplemvp.MvpView;
+import com.jaredrummler.simplemvp.MvpView
 
-public interface MainView extends MvpView {
+interface DemoView : MvpView {
 
-  void showProgress();
-  void hideProgress();
-  void showResult(CharSequence result);
+  fun showProgress()
+  fun hideProgress()
+  fun showResult(result: CharSequence)
+  fun onRootAvailable(available: Boolean)
 
 }
