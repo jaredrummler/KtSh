@@ -15,20 +15,49 @@
  */
 
 object Versions {
+
+    // ---------------------------------------------------------------------------------------------
+    // --- GRADLE
+    // ---
+
+    // https://developer.android.com/studio/releases/gradle-plugin
+    const val gradle = "4.2.1+"
+
+    // ---------------------------------------------------------------------------------------------
+    // --- KOTLIN
+    // ---
+
+    // https://kotlinlang.org/releases.html
     const val kotlin = "1.5.20"
+
+    // ---------------------------------------------------------------------------------------------
+    // --- TESTING
+    // ---
+
+    // https://mvnrepository.com/artifact/junit/junit/
     const val junit = "4.13.2"
 
+    // ---------------------------------------------------------------------------------------------
+    // --- Dependencies for demo project
+    // ---
+
     object AndroidX {
+        // https://developer.android.com/jetpack/androidx/releases/core
         const val ktx = "1.5.0"
+        // https://developer.android.com/jetpack/androidx/releases/appcompat
         const val appcompat = "1.3.0"
+        // https://developer.android.com/jetpack/androidx/releases/constraintlayout
         const val constraintlayout = "2.0.4"
     }
 
     object Google {
+        // https://maven.google.com/web/index.html#com.google.android.material:material
         const val material = "1.3.0"
     }
 
+    // https://github.com/massivemadness/Squircle-IDE
     object BlackSquircle {
-        const val editor = "1.3.0"
+        // https://repo1.maven.org/maven2/com/blacksquircle/
+        const val editorkit = "2.0.0"
     }
 }

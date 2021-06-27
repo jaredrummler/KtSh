@@ -36,7 +36,7 @@ class Dependencies {
     }
 
     object BlackSquircle {
-        const val editor = "com.blacksquircle.ui:editorkit:${Versions.BlackSquircle.editor}"
-        const val shell = "com.blacksquircle.ui:language-shell:${Versions.BlackSquircle.editor}"
+        const val editor = "com.blacksquircle.ui:editorkit:${Versions.BlackSquircle.editorkit}"
+        const val shell = "com.blacksquircle.ui:language-shell:${Versions.BlackSquircle.editorkit}"
     }
 }

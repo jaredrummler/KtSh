@@ -1,6 +1,7 @@
 plugins {
     `java-library`
     id("kotlin")
+    id(Plugins.Jetbrains.Dokka.id) version Plugins.Jetbrains.Dokka.version
 }
 
 java {
