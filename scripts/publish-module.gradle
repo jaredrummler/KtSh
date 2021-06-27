@@ -1,0 +1,91 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+apply plugin: 'org.jetbrains.dokka'
+
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        // For Android libraries
+        from android.sourceSets.main.java.srcDirs
+        from android.sourceSets.main.kotlin.srcDirs
+    } else {
+        // For pure Kotlin libraries
+        from sourceSets.main.java.srcDirs
+        from sourceSets.main.kotlin.srcDirs
+    }
+}
+
+tasks.withType(dokkaHtmlPartial.getClass()).configureEach {
+    pluginsMapConfiguration.set(
+            ["org.jetbrains.dokka.base.DokkaBase": """{ "separateInheritedMembers": true}"""]
+    )
+}
+
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    archiveClassifier.set('javadoc')
+    from dokkaJavadoc.outputDirectory
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+group = Publish.PUBLISH_GROUP_ID
+version = Publish.PUBLISH_VERSION
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                // The coordinates of the library, being set from variables, setup below.
+                groupId Publish.PUBLISH_GROUP_ID
+                artifactId Publish.PUBLISH_ARTIFACT_ID
+                version Publish.PUBLISH_VERSION
+
+                // Two artifacts, the `aar` (or `jar`) and the sources
+                if (project.plugins.findPlugin("com.android.library")) {
+                    from components.release
+                } else {
+                    from components.java
+                }
+
+                artifact androidSourcesJar
+                artifact javadocJar
+
+                pom {
+                    name = Publish.PUBLISH_ARTIFACT_ID
+                    description = Publish.DESCRIPTION
+                    url = Publish.URL
+                    licenses {
+                        license {
+                            name = 'Apache License'
+                            url = 'https://github.com/jaredrummler/ktsh/blob/main/LICENSE'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = "jaredrummler"
+                            name = "Jared Rummler"
+                            email = "jaredrummler@gmail.com"
+                        }
+                    }
+
+                    // Version control info.
+                    scm {
+                        connection = Publish.github.connection
+                        developerConnection = Publish.github.developerConnection
+                        url = Publish.github.url
+                    }
+                }
+            }
+        }
+    }
+}
+
+ext["signing.keyId"] = System.getenv('SIGNING_KEY_ID') ?: ext["signing.keyId"]
+ext["signing.password"] = System.getenv('SIGNING_PASSWORD') ?: ext["signing.password"]
+ext["signing.secretKeyRingFile"] = System.getenv('SIGNING_SECRET_KEY_RING_FILE') ?: ext["signing.secretKeyRingFile"]
+
+signing {
+    sign publishing.publications
+}

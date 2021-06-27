@@ -25,14 +25,21 @@ object Plugins {
         const val gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     }
 
+    object NexusPublish {
+        const val version = "1.1.0"
+        const val id = "io.github.gradle-nexus.publish-plugin"
+        const val gradle = "io.github.gradle-nexus:publish-plugin:$version"
+    }
+
     object Jetbrains {
 
         /**
          * See: https://github.com/Kotlin/dokka
          */
         object Dokka {
-            const val version = "1.4.10.2"
+            const val version = "1.4.32"
             const val id = "org.jetbrains.dokka"
+            const val gradle = "org.jetbrains.dokka:dokka-gradle-plugin:$version"
         }
     }
 
