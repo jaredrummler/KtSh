@@ -16,6 +16,7 @@
 
 package com.jaredrummler.ktsh
 
+import com.jaredrummler.ktsh.Shell.Command
 import java.io.*
 import java.util.*
 import java.util.concurrent.CountDownLatch
@@ -62,7 +63,7 @@ class Shell @Throws(NotFoundException::class) @JvmOverloads constructor(
      *                    with the system environment.
      */
     constructor(shell: String, vararg environment: Pair<Variable, Value>) :
-        this(shell, environment.toEnvironmentMap())
+            this(shell, environment.toEnvironmentMap())
 
     /**
      * Construct a new [Shell] with optional environment variable arguments as an array.
@@ -72,17 +73,23 @@ class Shell @Throws(NotFoundException::class) @JvmOverloads constructor(
      *                    with the system environment.
      */
     constructor(shell: String, environment: Array<String>) :
-        this(shell, environment.toEnvironmentMap())
+            this(shell, environment.toEnvironmentMap())
+
+    /**
+     * Get the current state of the shell
+     */
+    var state: State = State.Idle
+        private set
 
     private val onResultListeners = mutableSetOf<OnCommandResultListener>()
     private val onStdOutListeners = mutableSetOf<OnLineListener>()
-    private val onStdErrListeners = mutableSetOf<OnLineListener>()
 
+    private val onStdErrListeners = mutableSetOf<OnLineListener>()
     private val stdin: StandardInputStream
     private val stdoutReader: StreamReader
     private val stderrReader: StreamReader
     private var watchdog: Watchdog? = null
-    private var state: State = State.Idle
+
     private val process: Process
 
     init {
@@ -606,7 +613,7 @@ class Shell @Throws(NotFoundException::class) @JvmOverloads constructor(
     /**
      * Represents the possible states of the shell.
      */
-    private sealed class State {
+    sealed class State {
         /** The shell is idle; no commands are in progress. */
         object Idle : State()
 
