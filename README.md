@@ -1,6 +1,6 @@
 # KtSh
 
-<img src="https://s6.gifyu.com/images/ktsh-anim.gif" align="left" hspace="10" vspace="10"></a>
+<img src=".github/ktsh-demo.gif" align="left" hspace="10" vspace="10"></a>
 
 **An open source library to execute shell commands on Android or the JVM, written in Kotlin.**
 
