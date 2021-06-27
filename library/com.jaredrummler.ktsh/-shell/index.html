@@ -1,0 +1,462 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Shell</title>
+<link href="../../../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn"><a href="../../../index.html">
+          <div id="logo"></div>
+        </a>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="library::com.jaredrummler.ktsh/Shell///PointingToDeclaration//-1951329584">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../../index.html">library</a>/<a href="../index.html">com.jaredrummler.ktsh</a>/<a href="index.html">Shell</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>Shell</span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">class <a href="index.html">Shell</a> <span>@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a>() </span>constructor(path: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, environment: <a href="../index.html#1894207484%2FClasslikes%2F-1951329584">EnvironmentMap</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">A shell starts a <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Process.html">Process</a> with the provided shell and additional/optional environment variables. The shell handles maintaining the <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Process.html">Process</a> and reads standard output and standard error streams, returning stdout, stderr, and the last exit code as a <a href="-command/-result/index.html">Command.Result</a> when a command is complete.</p><p class="paragraph">Example usage:</p><div class="sample-container"><code class="" theme="idea"><pre>    val sh = Shell(&quot;sh&quot;)
+    val result = sh.run(&quot;echo 'Hello, World!'&quot;)
+    assert(result.isSuccess)
+    assert(result.stdout() == &quot;Hello, World&quot;)</pre></code></div><h4 class="">Author</h4><p class="paragraph">Jared Rummler (jaredrummler@gmail.com)</p><h4 class="">Since</h4><p class="paragraph">05-05-2021</p></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button><button class="section-tab" data-togglable="Throws">Throws</button></div>
+            <div class="tabs-section-body">
+              <h4 class="">Throws</h4>
+              <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="table"><div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><a href="-not-found-exception/index.html">com.jaredrummler.ktsh.Shell.NotFoundException</a></span></div><div><div class="title"><p class="paragraph">If the shell cannot be opened this runtime exception is thrown.</p></div></div></div></div></div></div></div>
+              <h2 class="tabbedcontent">Constructors</h2>
+              <div class="table" data-togglable="Constructors"><a data-name="-333797178%2FConstructors%2F-1951329584" anchor-label="Shell" id="-333797178%2FConstructors%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex"><a href="-shell.html">Shell</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-333797178%2FConstructors%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="-shell.html">Shell</a>(shell: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, vararg environment: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html">Pair</a>&lt;<a href="../index.html#1260581417%2FClasslikes%2F-1951329584">Variable</a>, <a href="../index.html#1108651884%2FClasslikes%2F-1951329584">Value</a>&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Construct a new <a href="index.html">Shell</a> with optional environment variable arguments as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-pair/index.html">Pair</a>.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-354365375%2FConstructors%2F-1951329584" anchor-label="Shell" id="-354365375%2FConstructors%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex"><a href="-shell.html">Shell</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-354365375%2FConstructors%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="-shell.html">Shell</a>(shell: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, environment: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>&gt;)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief ">Construct a new <a href="index.html">Shell</a> with optional environment variable arguments as an array.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="2096304509%2FConstructors%2F-1951329584" anchor-label="Shell" id="2096304509%2FConstructors%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue TabbedContent">
+                    <div class=""><span class="inline-flex"><a href="-shell.html">Shell</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2096304509%2FConstructors%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a>()</div></div>fun <a href="-shell.html">Shell</a>(path: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, environment: <a href="../index.html#1894207484%2FClasslikes%2F-1951329584">EnvironmentMap</a> = emptyMap())<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Types</h2>
+              <div class="table" data-togglable="Types"><a data-name="-260921608%2FClasslikes%2F-1951329584" anchor-label="ClosedException" id="-260921608%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-closed-exception/index.html">ClosedException</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-260921608%2FClasslikes%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">class <a href="-closed-exception/index.html">ClosedException</a>(message: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>) : <a href="https://docs.oracle.com/javase/8/docs/api/java/io/IOException.html">IOException</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-260921608%2FClasslikes%2F-1951329584" anchor-label="ClosedException" id="-260921608%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="-260921608%2FClasslikes%2F-1951329584" anchor-label="ClosedException" id="-260921608%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>The exception thrown when a command is passed to a closed shell.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-2141228304%2FClasslikes%2F-1951329584" anchor-label="Command" id="-2141228304%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-command/index.html">Command</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2141228304%2FClasslikes%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">object <a href="-command/index.html">Command</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-2141228304%2FClasslikes%2F-1951329584" anchor-label="Command" id="-2141228304%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="-2141228304%2FClasslikes%2F-1951329584" anchor-label="Command" id="-2141228304%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Contains data classes used for running commands in a <a href="index.html">Shell</a>.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1340258255%2FClasslikes%2F-1951329584" anchor-label="Companion" id="1340258255%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-companion/index.html">Companion</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1340258255%2FClasslikes%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">object <a href="-companion/index.html">Companion</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1136904891%2FClasslikes%2F-1951329584" anchor-label="NotFoundException" id="1136904891%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-not-found-exception/index.html">NotFoundException</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1136904891%2FClasslikes%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">class <a href="-not-found-exception/index.html">NotFoundException</a>(message: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, cause: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html">Throwable</a>) : <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/RuntimeException.html">RuntimeException</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="1136904891%2FClasslikes%2F-1951329584" anchor-label="NotFoundException" id="1136904891%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="1136904891%2FClasslikes%2F-1951329584" anchor-label="NotFoundException" id="1136904891%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>The exception thrown when the shell could not be opened.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1358591742%2FClasslikes%2F-1951329584" anchor-label="OnCommandResultListener" id="1358591742%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-on-command-result-listener/index.html">OnCommandResultListener</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1358591742%2FClasslikes%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">interface <a href="-on-command-result-listener/index.html">OnCommandResultListener</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="1358591742%2FClasslikes%2F-1951329584" anchor-label="OnCommandResultListener" id="1358591742%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="1358591742%2FClasslikes%2F-1951329584" anchor-label="OnCommandResultListener" id="1358591742%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Interface to receive a callback when a command completes.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-2076893472%2FClasslikes%2F-1951329584" anchor-label="OnLineListener" id="-2076893472%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-on-line-listener/index.html">OnLineListener</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2076893472%2FClasslikes%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">interface <a href="-on-line-listener/index.html">OnLineListener</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-2076893472%2FClasslikes%2F-1951329584" anchor-label="OnLineListener" id="-2076893472%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="-2076893472%2FClasslikes%2F-1951329584" anchor-label="OnLineListener" id="-2076893472%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Interface to receive a callback when reading a line from standard output/error streams.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1646597734%2FClasslikes%2F-1951329584" anchor-label="Timeout" id="-1646597734%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="-timeout/index.html">Timeout</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1646597734%2FClasslikes%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">data class <a href="-timeout/index.html">Timeout</a>(value: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html">Long</a>, unit: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html">TimeUnit</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-1646597734%2FClasslikes%2F-1951329584" anchor-label="Timeout" id="-1646597734%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="-1646597734%2FClasslikes%2F-1951329584" anchor-label="Timeout" id="-1646597734%2FClasslikes%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>A timeout used when running a command in a shell.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="-177126312%2FFunctions%2F-1951329584" anchor-label="addOnCommandResultListener" id="-177126312%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="add-on-command-result-listener.html">addOnCommandResultListener</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-177126312%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-on-command-result-listener.html">addOnCommandResultListener</a>(listener: <a href="-on-command-result-listener/index.html">Shell.OnCommandResultListener</a>): <a href="index.html">Shell</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-177126312%2FFunctions%2F-1951329584" anchor-label="addOnCommandResultListener" id="-177126312%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="-177126312%2FFunctions%2F-1951329584" anchor-label="addOnCommandResultListener" id="-177126312%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Add a listener that will be invoked each time a command finishes.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="842000526%2FFunctions%2F-1951329584" anchor-label="addOnStderrLineListener" id="842000526%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="add-on-stderr-line-listener.html">addOnStderrLineListener</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="842000526%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-on-stderr-line-listener.html">addOnStderrLineListener</a>(listener: <a href="-on-line-listener/index.html">Shell.OnLineListener</a>): <a href="index.html">Shell</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="842000526%2FFunctions%2F-1951329584" anchor-label="addOnStderrLineListener" id="842000526%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="842000526%2FFunctions%2F-1951329584" anchor-label="addOnStderrLineListener" id="842000526%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Add a listener that will be invoked each time the STDERR stream reads a new line.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1651563397%2FFunctions%2F-1951329584" anchor-label="addOnStdoutLineListener" id="1651563397%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="add-on-stdout-line-listener.html">addOnStdoutLineListener</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1651563397%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="add-on-stdout-line-listener.html">addOnStdoutLineListener</a>(listener: <a href="-on-line-listener/index.html">Shell.OnLineListener</a>): <a href="index.html">Shell</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="1651563397%2FFunctions%2F-1951329584" anchor-label="addOnStdoutLineListener" id="1651563397%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="1651563397%2FFunctions%2F-1951329584" anchor-label="addOnStdoutLineListener" id="1651563397%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Add a listener that will be invoked each time the STDOUT stream reads a new line.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1916428923%2FFunctions%2F-1951329584" anchor-label="interrupt" id="-1916428923%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="interrupt.html">interrupt</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1916428923%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="interrupt.html">interrupt</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-1916428923%2FFunctions%2F-1951329584" anchor-label="interrupt" id="-1916428923%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="-1916428923%2FFunctions%2F-1951329584" anchor-label="interrupt" id="-1916428923%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Interrupt waiting for a command to complete.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-992098075%2FFunctions%2F-1951329584" anchor-label="isAlive" id="-992098075%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-alive.html">isAlive</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-992098075%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="is-alive.html">isAlive</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-992098075%2FFunctions%2F-1951329584" anchor-label="isAlive" id="-992098075%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="-992098075%2FFunctions%2F-1951329584" anchor-label="isAlive" id="-992098075%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Check if the shell is alive and able to execute commands.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-103715212%2FFunctions%2F-1951329584" anchor-label="isIdle" id="-103715212%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-idle.html">isIdle</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-103715212%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="is-idle.html">isIdle</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-103715212%2FFunctions%2F-1951329584" anchor-label="isIdle" id="-103715212%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="-103715212%2FFunctions%2F-1951329584" anchor-label="isIdle" id="-103715212%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Check if the shell is idle.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-1095344397%2FFunctions%2F-1951329584" anchor-label="isRunning" id="-1095344397%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-running.html">isRunning</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1095344397%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="is-running.html">isRunning</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-1095344397%2FFunctions%2F-1951329584" anchor-label="isRunning" id="-1095344397%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="-1095344397%2FFunctions%2F-1951329584" anchor-label="isRunning" id="-1095344397%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Check if the shell is running a command.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="1297260722%2FFunctions%2F-1951329584" anchor-label="isShutdown" id="1297260722%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="is-shutdown.html">isShutdown</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1297260722%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="is-shutdown.html">isShutdown</a>(): <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="1297260722%2FFunctions%2F-1951329584" anchor-label="isShutdown" id="1297260722%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="1297260722%2FFunctions%2F-1951329584" anchor-label="isShutdown" id="1297260722%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Check if the shell is shutdown.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="-2112039137%2FFunctions%2F-1951329584" anchor-label="removeOnCommandResultListener" id="-2112039137%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="remove-on-command-result-listener.html">removeOnCommandResultListener</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2112039137%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="remove-on-command-result-listener.html">removeOnCommandResultListener</a>(listener: <a href="-on-command-result-listener/index.html">Shell.OnCommandResultListener</a>): <a href="index.html">Shell</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="-2112039137%2FFunctions%2F-1951329584" anchor-label="removeOnCommandResultListener" id="-2112039137%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="-2112039137%2FFunctions%2F-1951329584" anchor-label="removeOnCommandResultListener" id="-2112039137%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Remove a listener previously added to stop receiving callbacks when commands finish.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="96742869%2FFunctions%2F-1951329584" anchor-label="removeOnStderrLineListener" id="96742869%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="remove-on-stderr-line-listener.html">removeOnStderrLineListener</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="96742869%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="remove-on-stderr-line-listener.html">removeOnStderrLineListener</a>(listener: <a href="-on-line-listener/index.html">Shell.OnLineListener</a>): <a href="index.html">Shell</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="96742869%2FFunctions%2F-1951329584" anchor-label="removeOnStderrLineListener" id="96742869%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="96742869%2FFunctions%2F-1951329584" anchor-label="removeOnStderrLineListener" id="96742869%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Remove a listener previously added to stop receiving callbacks for STDERR read lines.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="906305740%2FFunctions%2F-1951329584" anchor-label="removeOnStdoutLineListener" id="906305740%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="remove-on-stdout-line-listener.html">removeOnStdoutLineListener</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="906305740%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace">fun <a href="remove-on-stdout-line-listener.html">removeOnStdoutLineListener</a>(listener: <a href="-on-line-listener/index.html">Shell.OnLineListener</a>): <a href="index.html">Shell</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="906305740%2FFunctions%2F-1951329584" anchor-label="removeOnStdoutLineListener" id="906305740%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="906305740%2FFunctions%2F-1951329584" anchor-label="removeOnStdoutLineListener" id="906305740%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Remove a listener previously added to stop receiving callbacks for STDOUT read lines.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="602361480%2FFunctions%2F-1951329584" anchor-label="run" id="602361480%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="run.html">run</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="602361480%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-synchronized/index.html">Synchronized</a>()</div><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-overloads/index.html">JvmOverloads</a>()</div></div>fun <a href="run.html">run</a>(command: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, config: <a href="-command/-config/index.html">Shell.Command.Config</a> = Command.Config.default()): <a href="-command/-result/index.html">Shell.Command.Result</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="299113290%2FFunctions%2F-1951329584" anchor-label="run" id="299113290%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="299113290%2FFunctions%2F-1951329584" anchor-label="run" id="299113290%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Run a command in the current shell and return its <a href="-command/-result/index.html">result</a>.</div></div>
+<div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-synchronized/index.html">Synchronized</a>()</div></div>fun <a href="run.html">run</a>(command: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, config: <a href="-command/-config/-builder/index.html">Shell.Command.Config.Builder</a>.() -&gt; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a>): <a href="-command/-result/index.html">Shell.Command.Result</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="1174411978%2FFunctions%2F-1951329584" anchor-label="run" id="1174411978%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="1174411978%2FFunctions%2F-1951329584" anchor-label="run" id="1174411978%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Run a command in the current shell and return its <a href="-command/-result/index.html">result</a>.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="594346492%2FFunctions%2F-1951329584" anchor-label="shutdown" id="594346492%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="shutdown.html">shutdown</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="594346492%2FFunctions%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-synchronized/index.html">Synchronized</a>()</div></div>fun <a href="shutdown.html">shutdown</a>()<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+<a data-name="594346492%2FFunctions%2F-1951329584" anchor-label="shutdown" id="594346492%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="brief "><a data-name="594346492%2FFunctions%2F-1951329584" anchor-label="shutdown" id="594346492%2FFunctions%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Shutdown the shell instance.</div></div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="">Properties</h2>
+              <div class="table" data-togglable="Properties"><a data-name="-2038654699%2FProperties%2F-1951329584" anchor-label="environment" id="-2038654699%2FProperties%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="environment.html">environment</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2038654699%2FProperties%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><a data-name="-2038654699%2FProperties%2F-1951329584" anchor-label="environment" id="-2038654699%2FProperties%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="symbol monospace">val <a href="environment.html">environment</a>: <a href="../index.html#1894207484%2FClasslikes%2F-1951329584">EnvironmentMap</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-2038654699%2FProperties%2F-1951329584" anchor-label="environment" id="-2038654699%2FProperties%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>Map of all environment variables to include with the system environment.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="434417037%2FProperties%2F-1951329584" anchor-label="path" id="434417037%2FProperties%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":library:dokkaHtml/main" data-filterable-set=":library:dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="path.html">path</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="434417037%2FProperties%2F-1951329584"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title">
+                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":library:dokkaHtml/main"><a data-name="434417037%2FProperties%2F-1951329584" anchor-label="path" id="434417037%2FProperties%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a><div class="symbol monospace">val <a href="path.html">path</a>: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="434417037%2FProperties%2F-1951329584" anchor-label="path" id="434417037%2FProperties%2F-1951329584" data-filterable-set=":library:dokkaHtml/main"></a>The path to the shell to start.</div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+
