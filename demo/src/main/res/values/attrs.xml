@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="syntaxColorTheme" format="enum">
+        <enum name="DARCULA" value="0" />
+        <enum name="MONOKAI" value="1" />
+        <enum name="OBSIDIAN" value="2" />
+        <enum name="LADIES_NIGHT" value="3" />
+        <enum name="TOMORROW_NIGHT" value="4" />
+        <enum name="VISUAL_STUDIO_2013" value="5" />
+    </attr>
+</resources>

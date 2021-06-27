@@ -1,62 +1,38 @@
-# Android Shell
+# KtSh
 
-<img src="https://github.com/jaredrummler/android-shell/blob/master/demo/src/main/res/mipmap-xxxhdpi/ic_launcher.png?raw=true" align="left" hspace="10" vspace="10"></a>
+<img src="https://s6.gifyu.com/images/ktsh-anim.gif" align="left" hspace="10" vspace="10"></a>
 
-Execute shell commands on Android.
+**An open source library to execute shell commands on Android or the JVM, written in Kotlin.**
 
-<a target="_blank" href="https://developer.android.com/reference/android/os/Build.VERSION_CODES.html#GINGERBREAD"><img src="https://img.shields.io/badge/API-9%2B-blue.svg?style=flat" alt="API" /></a>
 <a target="_blank" href="LICENSE"><img src="http://img.shields.io/:license-apache-blue.svg" alt="License" /></a>
-<a target="_blank" href="https://maven-badges.herokuapp.com/maven-central/com.jaredrummler/android-shell"><img src="https://maven-badges.herokuapp.com/maven-central/com.jaredrummler/android-shell/badge.svg" alt="Maven Central" /></a>
-<a target="_blank" href="http://www.methodscount.com/?lib=com.jaredrummler%3Aandroid-shell%3A1.0.0"><img src="https://img.shields.io/badge/methods-231-e91e63.svg" /></a>
-<a target="_blank" href="http://www.methodscount.com/?lib=com.jaredrummler%3Aandroid-shell%3A1.0.0"><img src="https://img.shields.io/badge/Size-32 KB-e91e63.svg"/></a>
+<a target="_blank" href="https://travis-ci.org/jaredrummler/KtSh"><img src="https://travis-ci.org/jaredrummler/KtSh.svg?branch=master" alt="Build Status" /></a>
+<a target="_blank" href="https://maven-badges.herokuapp.com/maven-central/com.jaredrummler/ktsh"><img src="https://maven-badges.herokuapp.com/maven-central/com.jaredrummler/ktsh/badge.svg" alt="Maven Central" /></a>
 <a target="_blank" href="https://twitter.com/jaredrummler"><img src="https://img.shields.io/twitter/follow/jaredrummler.svg?style=social" /></a>
 
-Download [the latest AAR](https://repo1.maven.org/maven2/com/jaredrummler/android-shell/1.0.0/android-processes-1.0.0.aar) or grab via Gradle:
+# Downloads
+
+Download [the latest JAR](https://repo1.maven.org/maven2/com/jaredrummler/ktsh/1.0.0/ktsh-1.0.0.jar) or grab via Gradle:
 
 ```groovy
-compile 'com.jaredrummler:android-shell:1.0.0'
-```
-<br>
-
-
-Usage
------
-
-Common utility functions include:
-
-```java
-CommandResult Shell.run(String shell, String... commands)
-CommandResult Shell.SH.run(String... commands)
-CommandResult Shell.SU.run(String... commands)
+implementation 'com.jaredrummler:ktsh:1.0.0'
 ```
 
-The result will contains the exit code, standard output (stdout), and standard error (stderr).
+Alternatively, you can simply copy the `Shell.kt` file to your project and update the package name.
 
-Example of running a command as root:
+# Usage
 
-```java
-CommandResult result = Shell.SU.run("id");
-if (result.isSuccessful()) {
-  System.out.println(result.getStdout());
-  // Example output on a rooted device:
-  // uid=0(root) gid=0(root) groups=0(root) context=u:r:init:s0
+```kotlin
+val shell = Shell("sh")                         // create a shell
+val result = shell.run("echo 'Hello, World!'")  // execute a command
+if (result.isSuccess) {                         // check if the exit-code was 0
+    println(result.stdout())                    // prints "Hello, World!"
 }
 ```
-
-You can open multiple shell instances using `Shell.Builder` or `Shell.Console.Builder`. Calling `Shell.SU.run(String... commands)` will keep a su session open in the background so additional calls will not create new superuser requests.
-
-Fore more information please see http://su.chainfire.eu/
-
-Acknowledgements
-----------------
-
-[libsuperuser](https://github.com/Chainfire/libsuperuser) by [Chainfire](https://twitter.com/ChainfireXDA)
 
 License
 -------
 
-    Copyright (C) 2016 Jared Rummler
-    Copyright (C) 2012-2015 Jorrit "Chainfire" Jongma
+    Copyright (C) 2021 Jared Rummler
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
