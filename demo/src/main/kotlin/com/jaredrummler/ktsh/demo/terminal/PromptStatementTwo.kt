@@ -26,10 +26,10 @@ import android.widget.TextView
 import androidx.core.view.children
 import androidx.core.view.doOnNextLayout
 import androidx.core.widget.doOnTextChanged
-import com.brackeys.ui.editorkit.model.ColorScheme
-import com.brackeys.ui.editorkit.model.EditorConfig
-import com.brackeys.ui.editorkit.widget.TextProcessor
-import com.brackeys.ui.language.shell.ShellLanguage
+import com.blacksquircle.ui.editorkit.model.ColorScheme
+import com.blacksquircle.ui.editorkit.model.EditorConfig
+import com.blacksquircle.ui.editorkit.widget.TextProcessor
+import com.blacksquircle.ui.language.shell.ShellLanguage
 import com.jaredrummler.ktsh.Shell
 
 internal class PromptStatementTwo @JvmOverloads constructor(

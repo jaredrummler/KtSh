@@ -26,7 +26,7 @@ import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
-import com.brackeys.ui.editorkit.model.ColorScheme
+import com.blacksquircle.ui.editorkit.model.ColorScheme
 import kotlin.math.roundToInt
 
 internal class CommandOutputTextView @JvmOverloads constructor(

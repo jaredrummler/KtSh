@@ -19,7 +19,7 @@ package com.jaredrummler.ktsh.demo.terminal
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
-import com.brackeys.ui.editorkit.model.ColorScheme
+import com.blacksquircle.ui.editorkit.model.ColorScheme
 import com.jaredrummler.ktsh.Shell
 
 internal abstract class PromptStatement @JvmOverloads constructor(

@@ -25,7 +25,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
-import com.brackeys.ui.editorkit.model.ColorScheme
+import com.blacksquircle.ui.editorkit.model.ColorScheme
 import com.jaredrummler.ktsh.Shell
 import com.jaredrummler.ktsh.Shell.Command.Config.Companion.silent
 import com.jaredrummler.ktsh.demo.R

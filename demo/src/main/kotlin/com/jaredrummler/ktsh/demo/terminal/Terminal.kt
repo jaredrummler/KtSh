@@ -23,8 +23,8 @@ import android.widget.ScrollView
 import androidx.core.content.res.use
 import androidx.core.view.children
 import androidx.core.view.doOnNextLayout
-import com.brackeys.ui.editorkit.model.ColorScheme
-import com.brackeys.ui.editorkit.theme.EditorTheme
+import com.blacksquircle.ui.editorkit.model.ColorScheme
+import com.blacksquircle.ui.editorkit.theme.EditorTheme
 import com.jaredrummler.ktsh.Shell
 import com.jaredrummler.ktsh.demo.R
 
