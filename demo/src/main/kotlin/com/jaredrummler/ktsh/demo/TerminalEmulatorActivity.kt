@@ -28,7 +28,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.jaredrummler.ktsh.Shell
 import com.jaredrummler.ktsh.demo.terminal.Terminal
 
-
 /**
  * A simple terminal emulator demo using [Shell.SH].
  */
@@ -90,8 +89,12 @@ class TerminalEmulatorActivity : AppCompatActivity(), TerminalEmulatorView {
     }
 
     override fun onKeyUp(keyCode: Int, event: KeyEvent?): Boolean = when (keyCode) {
-        KeyEvent.KEYCODE_DPAD_UP, KeyEvent.KEYCODE_PAGE_UP -> terminal.navigate(Terminal.History.Direction.UP)
-        KeyEvent.KEYCODE_DPAD_DOWN, KeyEvent.KEYCODE_PAGE_DOWN -> terminal.navigate(Terminal.History.Direction.DOWN)
+        KeyEvent.KEYCODE_DPAD_UP, KeyEvent.KEYCODE_PAGE_UP -> terminal.navigate(
+            Terminal.History.Direction.UP
+        )
+        KeyEvent.KEYCODE_DPAD_DOWN, KeyEvent.KEYCODE_PAGE_DOWN -> terminal.navigate(
+            Terminal.History.Direction.DOWN
+        )
         else -> super.onKeyUp(keyCode, event)
     }
 

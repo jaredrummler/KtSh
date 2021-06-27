@@ -53,4 +53,4 @@ tasks.register("clean", Delete::class) {
 }
 
 apply(plugin = Plugins.NexusPublish.id)
-apply(from = "${rootDir}/scripts/publish-root.gradle")
+apply(from = "$rootDir/scripts/publish-root.gradle")

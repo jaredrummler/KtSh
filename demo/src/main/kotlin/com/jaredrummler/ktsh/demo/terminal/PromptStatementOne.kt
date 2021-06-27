@@ -31,37 +31,47 @@ import com.jaredrummler.ktsh.Shell.Command.Config.Companion.silent
 import com.jaredrummler.ktsh.demo.R
 
 internal class PromptStatementOne @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : PromptStatement(context, attrs, defStyleAttr) {
 
     override fun init(shell: Shell, scheme: ColorScheme): PromptStatementOne = apply {
-        addView(ImageView(context).apply {
-            super.setBackgroundColor(scheme.backgroundColor)
-            this.layoutParams = createFillHeightParams()
-            this.setPadding(6.dp, 2.dp, 6.dp, 2.dp)
-            this.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_android_green_16dp))
-        })
-        addView(TextView(context).apply {
-            super.setBackgroundColor(scheme.backgroundColor)
-            this.layoutParams = createFillHeightParams()
-            this.typeface = Typeface.MONOSPACE
-            this.text = Build.DEVICE
-        })
-        addView(ImageView(context).apply {
-            super.setBackgroundColor(scheme.backgroundColor)
-            this.layoutParams = createFillHeightParams()
-            this.setPadding(6.dp, 2.dp, 6.dp, 2.dp)
-            this.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_folder_white_16dp))
-        })
-        addView(TextView(context).apply {
-            super.setBackgroundColor(scheme.backgroundColor)
-            this.layoutParams = createWrapParams()
-            this.typeface = Typeface.MONOSPACE
-            this.ellipsize = TextUtils.TruncateAt.MIDDLE
-            this.isSingleLine = true
-            this.maxLines = 1
-            this.text = shell.run(CMD_PWD, silent()).stdout()
-        })
+        addView(
+            ImageView(context).apply {
+                super.setBackgroundColor(scheme.backgroundColor)
+                this.layoutParams = createFillHeightParams()
+                this.setPadding(6.dp, 2.dp, 6.dp, 2.dp)
+                this.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_android_green_16dp))
+            }
+        )
+        addView(
+            TextView(context).apply {
+                super.setBackgroundColor(scheme.backgroundColor)
+                this.layoutParams = createFillHeightParams()
+                this.typeface = Typeface.MONOSPACE
+                this.text = Build.DEVICE
+            }
+        )
+        addView(
+            ImageView(context).apply {
+                super.setBackgroundColor(scheme.backgroundColor)
+                this.layoutParams = createFillHeightParams()
+                this.setPadding(6.dp, 2.dp, 6.dp, 2.dp)
+                this.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_folder_white_16dp))
+            }
+        )
+        addView(
+            TextView(context).apply {
+                super.setBackgroundColor(scheme.backgroundColor)
+                this.layoutParams = createWrapParams()
+                this.typeface = Typeface.MONOSPACE
+                this.ellipsize = TextUtils.TruncateAt.MIDDLE
+                this.isSingleLine = true
+                this.maxLines = 1
+                this.text = shell.run(CMD_PWD, silent()).stdout()
+            }
+        )
     }
 
     override fun setBackgroundColor(color: Int) {

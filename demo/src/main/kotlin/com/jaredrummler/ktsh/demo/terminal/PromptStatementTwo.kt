@@ -33,7 +33,9 @@ import com.blacksquircle.ui.language.shell.ShellLanguage
 import com.jaredrummler.ktsh.Shell
 
 internal class PromptStatementTwo @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : PromptStatement(context, attrs, defStyleAttr) {
 
     lateinit var editor: TextProcessor
@@ -56,36 +58,40 @@ internal class PromptStatementTwo @JvmOverloads constructor(
         }
 
     override fun init(shell: Shell, scheme: ColorScheme): PromptStatementTwo = apply {
-        addView(TextView(context).apply {
-            super.setBackgroundColor(scheme.backgroundColor)
-            this.setPadding(6.dp, 3.dp, 6.dp, 3.dp)
-            this.minWidth = 28.dp
-            this.layoutParams = createFillHeightParams()
-            this.gravity = Gravity.CENTER
-            this.text = ">"
-            this.setTextColor(Color.GREEN)
-        })
-        addView(TextProcessor(context).apply {
-            super.setBackgroundColor(scheme.backgroundColor)
-            this.setPadding(16.dp, 5.dp, 16.dp, 5.dp)
-            this.layoutParams = createFillParams()
-            this.language = ShellLanguage()
-            this.gravity = Gravity.CENTER xor Gravity.START
-            this.isCursorVisible = true
-            this.editorConfig = EditorConfig(
-                fontType = Typeface.MONOSPACE,
-                codeCompletion = true,
-                lineNumbers = false,
-                highlightCurrentLine = false,
-                highlightDelimiters = false
-            )
-            onNewLineListener { command ->
-                callback.onEnter(command)
+        addView(
+            TextView(context).apply {
+                super.setBackgroundColor(scheme.backgroundColor)
+                this.setPadding(6.dp, 3.dp, 6.dp, 3.dp)
+                this.minWidth = 28.dp
+                this.layoutParams = createFillHeightParams()
+                this.gravity = Gravity.CENTER
+                this.text = ">"
+                this.setTextColor(Color.GREEN)
             }
-            doOnNextLayout { view ->
-                view.requestFocus()
-            }
-        }.also { editor = it })
+        )
+        addView(
+            TextProcessor(context).apply {
+                super.setBackgroundColor(scheme.backgroundColor)
+                this.setPadding(16.dp, 5.dp, 16.dp, 5.dp)
+                this.layoutParams = createFillParams()
+                this.language = ShellLanguage()
+                this.gravity = Gravity.CENTER xor Gravity.START
+                this.isCursorVisible = true
+                this.editorConfig = EditorConfig(
+                    fontType = Typeface.MONOSPACE,
+                    codeCompletion = true,
+                    lineNumbers = false,
+                    highlightCurrentLine = false,
+                    highlightDelimiters = false
+                )
+                onNewLineListener { command ->
+                    callback.onEnter(command)
+                }
+                doOnNextLayout { view ->
+                    view.requestFocus()
+                }
+            }.also { editor = it }
+        )
     }
 
     override fun setBackgroundColor(color: Int) {
@@ -108,8 +114,8 @@ internal class PromptStatementTwo @JvmOverloads constructor(
     }
 
     override fun requestFocus(direction: Int, previouslyFocusedRect: Rect?): Boolean {
-        return editor.requestFocus(direction, previouslyFocusedRect)
-                || super.requestFocus(direction, previouslyFocusedRect)
+        return editor.requestFocus(direction, previouslyFocusedRect) ||
+            super.requestFocus(direction, previouslyFocusedRect)
     }
 
     interface OnEnterCallback {
@@ -129,4 +135,3 @@ internal class PromptStatementTwo @JvmOverloads constructor(
         }
     }
 }
-

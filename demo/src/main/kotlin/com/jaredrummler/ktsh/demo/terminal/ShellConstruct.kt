@@ -63,7 +63,10 @@ enum class ShellConstruct(
                             else -> {
                                 val index = statement.indexOf(shellConstruct.end)
                                 if (index == -1) return@forEachRemaining
-                                statement = statement.removeRange(index, index + shellConstruct.close.length)
+                                statement = statement.removeRange(
+                                    index,
+                                    index + shellConstruct.close.length
+                                )
                                 iterator.remove()
                             }
                         }
@@ -92,7 +95,6 @@ enum class ShellConstruct(
                     -1
                 }
             }
-
         }
     }
 }

@@ -50,7 +50,8 @@ typealias EnvironmentMap = Map<Variable, Value>
  * @since 05-05-2021
  */
 class Shell @Throws(NotFoundException::class) @JvmOverloads constructor(
-    val path: String, val environment: EnvironmentMap = emptyMap()
+    val path: String,
+    val environment: EnvironmentMap = emptyMap()
 ) {
 
     /**
@@ -61,7 +62,7 @@ class Shell @Throws(NotFoundException::class) @JvmOverloads constructor(
      *                    with the system environment.
      */
     constructor(shell: String, vararg environment: Pair<Variable, Value>) :
-            this(shell, environment.toEnvironmentMap())
+        this(shell, environment.toEnvironmentMap())
 
     /**
      * Construct a new [Shell] with optional environment variable arguments as an array.
@@ -71,7 +72,7 @@ class Shell @Throws(NotFoundException::class) @JvmOverloads constructor(
      *                    with the system environment.
      */
     constructor(shell: String, environment: Array<String>) :
-            this(shell, environment.toEnvironmentMap())
+        this(shell, environment.toEnvironmentMap())
 
     private val onResultListeners = mutableSetOf<OnCommandResultListener>()
     private val onStdOutListeners = mutableSetOf<OnLineListener>()
@@ -201,13 +202,14 @@ class Shell @Throws(NotFoundException::class) @JvmOverloads constructor(
 
         val onComplete = { marker: Command.Marker ->
             when (marker.uuid) {
-                uuid -> try { // Reached the end of reading the stream for the command.
-                    if (marker.status != Command.Status.INVALID) {
-                        exitCode = marker.status
+                uuid ->
+                    try { // Reached the end of reading the stream for the command.
+                        if (marker.status != Command.Status.INVALID) {
+                            exitCode = marker.status
+                        }
+                    } finally {
+                        watchdog.signal()
                     }
-                } finally {
-                    watchdog.signal()
-                }
             }
         }
 
@@ -266,7 +268,15 @@ class Shell @Throws(NotFoundException::class) @JvmOverloads constructor(
         }
 
         // Create the result from running the command.
-        val result = Command.Result.create(uuid, command, stdout, stderr, output, exitCode, startTime)
+        val result = Command.Result.create(
+            uuid,
+            command,
+            stdout,
+            stderr,
+            output,
+            exitCode,
+            startTime
+        )
 
         if (config.notify) {
             onResultListeners.forEach { listener ->
@@ -429,7 +439,13 @@ class Shell @Throws(NotFoundException::class) @JvmOverloads constructor(
                     exitCode: Int,
                     startTime: Long,
                     endTime: Long = System.currentTimeMillis(),
-                ) = Result(stdout, stderr, output, exitCode, Details(uuid, command, startTime, endTime))
+                ) = Result(
+                    stdout,
+                    stderr,
+                    output,
+                    exitCode,
+                    Details(uuid, command, startTime, endTime)
+                )
             }
         }
 
@@ -484,7 +500,16 @@ class Shell @Throws(NotFoundException::class) @JvmOverloads constructor(
                  * @return A new [Config] for a command.
                  */
                 fun create() =
-                    Config(uuid, redirectErrorStream, onStdOut, onStdErr, onCancelled, onTimeout, timeout, notify)
+                    Config(
+                        uuid,
+                        redirectErrorStream,
+                        onStdOut,
+                        onStdErr,
+                        onCancelled,
+                        onTimeout,
+                        timeout,
+                        notify
+                    )
             }
 
             companion object {
@@ -671,7 +696,8 @@ class Shell @Throws(NotFoundException::class) @JvmOverloads constructor(
      * @param stream Either the [Process.getInputStream] or [Process.getErrorStream]
      */
     private class StreamReader private constructor(
-        name: String, private val stream: InputStream
+        name: String,
+        private val stream: InputStream
     ) : Thread(name) {
 
         /**

@@ -37,7 +37,10 @@ internal inline fun <reified T : ViewGroup.LayoutParams> createFillHeightParams(
     createParams(WRAP_CONTENT, MATCH_PARENT)
 
 internal inline fun <reified T : ViewGroup.LayoutParams> createParams(width: Int, height: Int): T =
-    T::class.java.getDeclaredConstructor(Int::class.java, Int::class.java).newInstance(width, height)
+    T::class.java.getDeclaredConstructor(Int::class.java, Int::class.java).newInstance(
+        width,
+        height
+    )
 
 internal val View.activity: Activity get() = context as Activity
 

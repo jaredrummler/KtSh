@@ -51,7 +51,7 @@ class ShellTest {
             do
                 echo ${'$'}i
             done
-        """.trimIndent()
+            """.trimIndent()
         )
         Assert.assertEquals(listOf("1", "2", "3"), result.stdout)
     }
@@ -59,12 +59,14 @@ class ShellTest {
     @Test
     fun `should add command result listener`() {
         var gotResult = false
-        Shell.SH.addOnCommandResultListener(object : Shell.OnCommandResultListener {
-            override fun onResult(result: Shell.Command.Result) {
-                Shell.SH.removeOnCommandResultListener(this)
-                gotResult = true
+        Shell.SH.addOnCommandResultListener(
+            object : Shell.OnCommandResultListener {
+                override fun onResult(result: Shell.Command.Result) {
+                    Shell.SH.removeOnCommandResultListener(this)
+                    gotResult = true
+                }
             }
-        })
+        )
         Shell.SH.run(TEST_COMMAND)
         Assert.assertTrue(gotResult)
     }
@@ -156,5 +158,4 @@ class ShellTest {
         private const val ERROR_STATUS = Shell.Command.Status.NOT_FOUND
         private const val ERROR_STDERR = "command not found"
     }
-
 }

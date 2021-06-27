@@ -28,9 +28,10 @@ import com.blacksquircle.ui.editorkit.theme.EditorTheme
 import com.jaredrummler.ktsh.Shell
 import com.jaredrummler.ktsh.demo.R
 
-
 class Terminal @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : ScrollView(context, attrs, defStyleAttr) {
 
     private val history = History()
@@ -73,25 +74,29 @@ class Terminal @JvmOverloads constructor(
         this.console = Console(context)
         this.addView(console)
 
-        this.shell.addOnStdoutLineListener(object : Shell.OnLineListener {
-            override fun onLine(line: String) {
-                handler.post {
-                    output.visibility = VISIBLE
-                    output.appendStdOut(line)
-                    scrollToBottom()
+        this.shell.addOnStdoutLineListener(
+            object : Shell.OnLineListener {
+                override fun onLine(line: String) {
+                    handler.post {
+                        output.visibility = VISIBLE
+                        output.appendStdOut(line)
+                        scrollToBottom()
+                    }
                 }
             }
-        })
+        )
 
-        this.shell.addOnStderrLineListener(object : Shell.OnLineListener {
-            override fun onLine(line: String) {
-                handler.post {
-                    output.visibility = VISIBLE
-                    output.appendStdErr(line)
-                    scrollToBottom()
+        this.shell.addOnStderrLineListener(
+            object : Shell.OnLineListener {
+                override fun onLine(line: String) {
+                    handler.post {
+                        output.visibility = VISIBLE
+                        output.appendStdErr(line)
+                        scrollToBottom()
+                    }
                 }
             }
-        })
+        )
     }
 
     /**
@@ -144,12 +149,14 @@ class Terminal @JvmOverloads constructor(
         // Remove PS1
         console.removeChildrenOf<PromptStatementOne>()
         // Add the TextView for standard out/err streams.
-        console.addView(CommandOutputTextView(context).also { view ->
-            view.init(theme.scheme)
-            view.visibility = GONE
-        }.also { view ->
-            output = view
-        })
+        console.addView(
+            CommandOutputTextView(context).also { view ->
+                view.init(theme.scheme)
+                view.visibility = GONE
+            }.also { view ->
+                output = view
+            }
+        )
         // Add the new PS2 view and disable all others.
         addPromptStatementTwo()
         // Set focus to the bottom of the Terminal
@@ -157,20 +164,22 @@ class Terminal @JvmOverloads constructor(
     }
 
     private fun addPromptStatementTwo() {
-        console.addView(ps2().also { prompt ->
-            command?.let { command ->
-                prompt.constructs = ShellConstruct.constructs(command)
-            }
-            prompt.doOnNextLayout {
-                (0 until console.childCount - 1).onEach { index ->
-                    when (val child = console.getChildAt(index)) {
-                        is PromptStatementTwo -> {
-                            child.isEnabled = false
+        console.addView(
+            ps2().also { prompt ->
+                command?.let { command ->
+                    prompt.constructs = ShellConstruct.constructs(command)
+                }
+                prompt.doOnNextLayout {
+                    (0 until console.childCount - 1).onEach { index ->
+                        when (val child = console.getChildAt(index)) {
+                            is PromptStatementTwo -> {
+                                child.isEnabled = false
+                            }
                         }
                     }
                 }
             }
-        })
+        )
         scrollToBottom()
     }
 

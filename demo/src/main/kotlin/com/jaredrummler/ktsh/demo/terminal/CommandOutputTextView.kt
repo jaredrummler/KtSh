@@ -30,7 +30,9 @@ import com.blacksquircle.ui.editorkit.model.ColorScheme
 import kotlin.math.roundToInt
 
 internal class CommandOutputTextView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
 
     @get:ColorInt
@@ -56,9 +58,16 @@ internal class CommandOutputTextView @JvmOverloads constructor(
 
     fun appendStdErr(line: String) {
         append("\n") { !text.isNullOrEmpty() }
-        append(SpannableString(line).apply {
-            setSpan(ForegroundColorSpan(stdErrTextColor), 0, line.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        })
+        append(
+            SpannableString(line).apply {
+                setSpan(
+                    ForegroundColorSpan(stdErrTextColor),
+                    0,
+                    line.length,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            }
+        )
     }
 
     private val Int.dp: Int get() = (this * context.resources.displayMetrics.density).roundToInt()

@@ -23,7 +23,9 @@ import com.blacksquircle.ui.editorkit.model.ColorScheme
 import com.jaredrummler.ktsh.Shell
 
 internal abstract class PromptStatement @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
     init {

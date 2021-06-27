@@ -34,7 +34,8 @@ class ShellFormatterTest {
     }
 
     companion object {
-        private const val TEST_CODE_UNFORMATTED = """
+        private const val TEST_CODE_UNFORMATTED =
+            """
 for i in `seq 1 100`; do
 if [ ${'$'}i%15 -eq 15 ]; then
 echo "FizzBuzz"
@@ -48,7 +49,8 @@ fi
 done
 """
 
-        private const val TEST_CODE_FORMATTED_WITH_SPACES = """
+        private const val TEST_CODE_FORMATTED_WITH_SPACES =
+            """
 for i in `seq 1 100`; do
     if [ ${'$'}i%15 -eq 15 ]; then
         echo "FizzBuzz"
