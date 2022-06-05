@@ -21,14 +21,14 @@ object Versions {
     // ---
 
     // https://developer.android.com/studio/releases/gradle-plugin
-    const val gradle = "4.2.1+"
+    const val gradle = "7.2.1"
 
     // ---------------------------------------------------------------------------------------------
     // --- KOTLIN
     // ---
 
     // https://kotlinlang.org/releases.html
-    const val kotlin = "1.5.20"
+    const val kotlin = "1.6.21"
 
     // ---------------------------------------------------------------------------------------------
     // --- TESTING
@@ -43,16 +43,16 @@ object Versions {
 
     object AndroidX {
         // https://developer.android.com/jetpack/androidx/releases/core
-        const val ktx = "1.5.0"
+        const val ktx = "1.8.0"
         // https://developer.android.com/jetpack/androidx/releases/appcompat
-        const val appcompat = "1.3.0"
+        const val appcompat = "1.4.2"
         // https://developer.android.com/jetpack/androidx/releases/constraintlayout
-        const val constraintlayout = "2.0.4"
+        const val constraintlayout = "2.1.4"
     }
 
     object Google {
         // https://maven.google.com/web/index.html#com.google.android.material:material
-        const val material = "1.3.0"
+        const val material = "1.6.1"
     }
 
     // https://github.com/massivemadness/Squircle-IDE

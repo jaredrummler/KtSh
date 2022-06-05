@@ -36,7 +36,7 @@ subprojects {
         disabledRules.set(setOf("no-wildcard-imports"))
 
         filter {
-            exclude("**/generated/**", "**/resources/MR.kt")
+            exclude("**/generated/**")
             include("**/kotlin/**")
         }
     }
@@ -52,5 +52,7 @@ tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
 
-apply(plugin = Plugins.NexusPublish.id)
-apply(from = "$rootDir/scripts/publish-root.gradle")
+if (Publish.applyPlugin) {
+    apply(plugin = Plugins.NexusPublish.id)
+    apply(from = "$rootDir/scripts/publish-root.gradle")
+}

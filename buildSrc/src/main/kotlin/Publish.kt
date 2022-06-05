@@ -15,6 +15,8 @@
  */
 
 object Publish {
+    const val applyPlugin = false
+
     const val PUBLISH_GROUP_ID = "com.jaredrummler"
     const val PUBLISH_ARTIFACT_ID = "ktsh"
     const val PUBLISH_VERSION = "1.0.0"
